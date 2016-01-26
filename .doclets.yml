@@ -1,4 +1,4 @@
 dir: lib
 flavor: jsdoc
 articles:
-  - Readme: README.md
+  - About: README.md
