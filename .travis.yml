@@ -6,6 +6,13 @@ node_js:
   - 2
   - 1
   - 0.12
-sudo: false
-script: "make test-travis"
-after_script: "npm install coveralls@2 && cat ./coverage/lcov.info | coveralls"
+before_script:
+  - sudo apt-get install build-essential libssl-dev git
+  - git clone https://github.com/wg/wrk.git
+  - cd wrk && make && sudo cp wrk /usr/local/bin && cd ..
+script:
+  - make test-travis
+  - make bench
+after_script:
+  - npm install codecov
+  - ./node_modules/.bin/codecov
